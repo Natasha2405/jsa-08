@@ -52,3 +52,7 @@ const sampleFn2 = function() {
 const sampleFatFn = () => {
     console.log('Funkcija 3!!!');
 };
+
+const sampleFatFn = () => {
+    console.log('Funkcija 3!!!');
+};
