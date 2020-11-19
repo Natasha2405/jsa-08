@@ -162,7 +162,7 @@ const Car1 = (color) => {
     this.color = color;
 };
 
-// const redCar1 = new Car1('red'); // TypeError: Car is not a constructor 
+// const redCar1 = new Car1('red'); // TypeError: Car1 is not a constructor
 
 
 // 5. No duplicate named parameters
