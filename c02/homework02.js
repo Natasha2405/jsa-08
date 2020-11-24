@@ -11,7 +11,7 @@ const conversionFunction = (number, convert, printResult) => {
         printResult(result);
     } else if (convert == 'miles') {
         let result = number * 1.6;
-        printResult(result)
+        printResult(result);
     }
 }
 
@@ -90,7 +90,7 @@ evenOrOddNumbers(13, 40)  // output: There is an ODD number
 
 const calculateIndex = (index) => {
     return new Promise((success, fail) => {
-        if (index <= 50) {
+        if (index >= 0 && index <= 50) {
             return success('Air Pollution Level: Good');
         } else if (index >= 51 && index <= 100) {
             return success('Air Pollution Level: Moderate');
