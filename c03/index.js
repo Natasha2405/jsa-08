@@ -39,7 +39,7 @@ let text = `Lorem Ipsum is simply dummy text of the printing and typesetting ind
 //             return console.log(err);
 //         }
 //         console.log(data);
-        
+
 //         fs.appendFile('data.txt', "\n\n🔥🔥🔥🎉\n\n", err => {
 //             if (err) {
 //                 return console.log(err);
