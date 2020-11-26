@@ -92,7 +92,7 @@ const fileDelete = (file) => {
 //         return fileDelete('copy.txt');
 //     })
 //     .then(() => {
-//         console.log('Successfully deleted file!')
+//         console.log('Successfully deleted file!');
 //     })
 //     .catch(err => {
 //         console.log(err);
