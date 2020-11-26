@@ -25,6 +25,30 @@ let text = `Lorem Ipsum is simply dummy text of the printing and typesetting ind
 //     console.log('Successfull append!');
 // });
 
+
+// ****************************
+
+// fs.writeFile('data.txt', text, err => {
+//     if (err) {
+//         return console.log(err);
+//     }
+//     console.log('Successfull write!');
+
+//     fs.readFile('data.txt', 'utf8', (err, data) => {
+//         if (err) {
+//             return console.log(err);
+//         }
+//         console.log(data);
+        
+//         fs.appendFile('data.txt', "\n\n🔥🔥🔥🎉\n\n", err => {
+//             if (err) {
+//                 return console.log(err);
+//             }
+//             console.log('Successfull append!');
+//         });
+//     });
+// });
+
 //**************************************************************************
 
 const fileWrite = (file, content) => {
