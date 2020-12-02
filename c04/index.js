@@ -63,15 +63,15 @@ api.patch('/users/:id', (req, res) => {
     }
 
     if (req.body.first_name && req.body.last_name) {
-        return usersData[req.params.id] = req.body;
+        usersData[req.params.id] = req.body;
     }
     if (req.body.first_name) {
-        return usersData[req.params.id].first_name = req.body.first_name;
+        usersData[req.params.id].first_name = req.body.first_name;
     }
     if (req.body.last_name) {
-        return usersData[req.params.id].last_name = req.body.last_name;
+        usersData[req.params.id].last_name = req.body.last_name;
     }
-    res.status(204).send(req.body);
+    res.status(204).send(usersData[req.params.id]);
 });
 
 api.delete('/users/:id', (req, res) => {
