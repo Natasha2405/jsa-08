@@ -9,11 +9,11 @@ const getAll = async () => {
 
 const getOne = async (id) => {
     let data = await jsonf.readJSONFile(dataFile);
-    data.filter(u => i.id === id);
+    let res = data.filter(u => u.id === Number(id));
     return res[0];
 }
 
-const save = async (userdata) => {
+const save = async (userData) => {
     let data = await jsonf.readJSONFile(dataFile);
     let id = data[data.length - 1].id + 1;
     userData = {
@@ -25,53 +25,55 @@ const save = async (userdata) => {
     return userData;
 };
 
-const update = async (id, userdata) => {
+const update = async (id, userData) => {
     let data = await jsonf.readJSONFile(dataFile);
     let changed = false;
     data = data.map(u => {
-        if (u.id === id) {
-            u = userData;
+        if (u.id === Number(id)) {
+            u = {...userData, id: Number(id)};
             changed = true;
         }
         return u;
-    })
+    });
     await jsonf.writeJSONFile(dataFile, data);
     return changed;
 };
 
-const updatePartial = async (id, userdata) => {
+const updatePartial = async (id, userData) => {
     let data = await jsonf.readJSONFile(dataFile);
     let changed = false;
     data = data.map(u => {
-        if (u.id === id) {
-            // u = userData;
+        if (u.id === Number(id)) {
             for (k in userData) {
                 u[k] = userData[k];
             }
             changed = true;
         }
         return u;
-    })
+    });
     await jsonf.writeJSONFile(dataFile, data);
     return changed;
 };
 
 const remove = async (id) => {
     let data = await jsonf.readJSONFile(dataFile);
-    data = data.filter(u => { }
-        if (u.id !== id) {
-        return true;
-    }
-    return false;
-}
-await jsonf.writeJSONFile(dataFile, data);
+    let changed = false;
+    data = data.filter(u => {
+        if (u.id !== Number(id)) {
+            changed = true;
+            return true;
+        }
+        return false;
+    });
+    await jsonf.writeJSONFile(dataFile, data);
+    return changed;
 };
 
-module.export = {
+module.exports = {
     getAll,
     getOne,
     save,
     update,
     updatePartial,
     remove
-}
+};
