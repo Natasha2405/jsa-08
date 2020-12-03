@@ -1,8 +1,8 @@
-const booksModel = require('../pkg/books');
+const carsModel = require('../pkg/cars');
 
 const getAll = async (req, res) => {
     try {
-        let data = await booksModel.getAll();
+        let data = await carsModel.getAll();
         return res.status(200).send(data);
     } catch (err) {
         console.log(err);
@@ -12,7 +12,7 @@ const getAll = async (req, res) => {
 
 const getOne = async (req, res) => {
     try {
-        let data = await booksModel.getOne(req.params.id);
+        let data = await carsModel.getOne(req.params.id);
         if (data) {
             return res.status(200).send(data);
         }
@@ -25,8 +25,8 @@ const getOne = async (req, res) => {
 
 const save = async (req, res) => {
     try {
-        let book = await booksModel.save(req.body);
-        return res.status(201).send(book);
+        let car = await carsModel.save(req.body);
+        return res.status(201).send(car);
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -35,8 +35,8 @@ const save = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        let updateBook = await booksModel.update(req.params.id, req.body);
-        if (updateBook) {
+        let updateCar = await carsModel.update(req.params.id, req.body);
+        if (updateCar) {
             return res.status(204).send('No Content');
         }
         return res.status(404).send('Not Found');
@@ -48,8 +48,8 @@ const update = async (req, res) => {
 
 const updatePartial = async (req, res) => {
     try {
-        let updateBook = await booksModel.updatePartial(req.params.id, req.body);
-        if (updateBook) {
+        let updateCar = await carsModel.updatePartial(req.params.id, req.body);
+        if (updateCar) {
             return res.status(204).send('No Content');
         }
         return res.status(404).send('Not Found');
@@ -61,8 +61,8 @@ const updatePartial = async (req, res) => {
 
 const remove = async (req, res) => {
     try {
-        let deleteBook = await booksModel.remove(req.params.id);
-        if (deleteBook) {
+        let deleteCar = await carsModel.remove(req.params.id);
+        if (deleteCar) {
             return res.status(204).send('No Content');
         }
         return res.status(404).send('Not Found');

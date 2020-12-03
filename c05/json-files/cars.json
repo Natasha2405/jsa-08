@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Ford",
+        "model": "Fiesta"
+    },
+    {
+        "id": 2,
+        "name": "BMW",
+        "model": "X5"
+    },
+    {
+        "id": 3,
+        "name": "Fiat",
+        "model": "Panda"
+    }
+]

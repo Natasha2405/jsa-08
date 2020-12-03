@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "title": "Lord of the Rings",
+        "author": "J.R.R. Tolkien"
+    },
+    {
+        "id": 2,
+        "title": "Hamlet",
+        "author": "William Shakespeare"
+    },
+    {
+        "id": 3,
+        "title": "Crime and Punishment",
+        "author": "Fyodor Dostoyevsky"
+    }
+]
