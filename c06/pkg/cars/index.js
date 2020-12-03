@@ -1,6 +1,6 @@
 const jsonf = require('../files');
 
-const dataFile = './json-files/books.json';
+const dataFile = './json-files/cars.json';
 
 const getAll = async () => {
     let data = await jsonf.readJSONFile(dataFile);
@@ -9,47 +9,44 @@ const getAll = async () => {
 
 const getOne = async (id) => {
     let data = await jsonf.readJSONFile(dataFile);
-    let res = data.filter(book => book.id === Number(id));
+    let res = data.filter(car => car.id === Number(id));
     return res[0];
 };
 
-const save = async (bookData) => {
+const save = async (carData) => {
     let data = await jsonf.readJSONFile(dataFile);
-    let id = 1;
-    if (data.length > 0) {
-        id = data[data.length - 1].id + 1;
-    }
-    bookData = { id, ...bookData};
-    data = [...data, bookData];
+    let id = data[data.length - 1].id + 1;
+    carData = { id, ...carData };
+    data = [...data, carData];
     await jsonf.writeJSONFile(dataFile, data);
-    return bookData;
+    return carData;
 };
 
-const update = async (id, bookData) => {
+const update = async (id, carData) => {
     let data = await jsonf.readJSONFile(dataFile);
     let changed = false;
-    data = data.map(book => {
-        if (book.id === Number(id)) {
-            book = {...bookData, id: Number(id)};
+    data = data.map(car => {
+        if (car.id === Number(id)) {
+            car = { ...carData, id: Number(id) };
             changed = true;
         }
-        return book;
+        return car;
     });
     await jsonf.writeJSONFile(dataFile, data);
     return changed;
 };
 
-const updatePartial = async (id, bookData) => {
+const updatePartial = async (id, carData) => {
     let data = await jsonf.readJSONFile(dataFile);
     let changed = false;
-    data = data.map(book => {
-        if (book.id === Number(id)) {
-            for (x in bookData) {
-                book[x] = bookData[x];
+    data = data.map(car => {
+        if(car.id === Number(id)) {
+            for (x in carData) {
+                car[x] = carData[x];
             }
             changed = true;
         }
-        return book;
+        return car;
     });
     await jsonf.writeJSONFile(dataFile, data);
     return changed;
@@ -58,8 +55,8 @@ const updatePartial = async (id, bookData) => {
 const remove = async (id) => {
     let data = await jsonf.readJSONFile(dataFile);
     let changed = false;
-    data = data.filter(book => {
-        if (book.id !== Number(id)) {
+    data = data.filter(car => {
+        if(car.id !== Number(id)) {
             changed = true;
             return true;
         }
@@ -77,4 +74,3 @@ module.exports = {
     updatePartial,
     remove
 };
-
