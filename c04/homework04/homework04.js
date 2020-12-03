@@ -70,7 +70,7 @@ api.patch('/users/:id', (req, res) => {
             if (!data[req.params.id]) {
                 return res.status(404).send('Not Found');
             }
-            if (req.body.id && req.body.first_name && req.body.last_name) {
+            if (req.body.first_name && req.body.last_name) {
                 data[req.params.id] = req.body;
             }
             if (req.body.first_name) {
