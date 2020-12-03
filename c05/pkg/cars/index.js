@@ -1,5 +1,4 @@
 const jsonf = require('../files');
-const { json } = require('express');
 
 const dataFile = './json-files/cars.json';
 
