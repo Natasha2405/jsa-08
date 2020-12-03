@@ -8,7 +8,6 @@ const getAll = async (req, res) => {
         console.log(err);
         return res.status(500).send('Internal Server Error');
     }
-
 };
 
 const getOne = async (req, res) => {

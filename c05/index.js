@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const users = require('./handlers/users');
 const books = require('./handlers/books');
+const cars = require('./handlers/cars');
 
 const api = express();
 
@@ -20,6 +21,13 @@ api.post('/books', books.save);
 api.put('/books/:id', books.update);
 api.patch('/books/:id', books.updatePartial);
 api.delete('/books/:id', books.remove);
+
+api.get('/cars', cars.getAll);
+api.get('/cars/:id', cars.getOne);
+api.post('/cars', cars.save);
+api.put('/cars/:id', cars.update);
+api.patch('/cars/:id', cars.updatePartial);
+api.delete('/cars/:id', cars.remove);
 
 api.listen(9000, err => {
     if(err) {

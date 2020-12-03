@@ -1,8 +1,8 @@
 const fs = require('fs');
 
-const writeJSONFile = (f, data) => {
+const writeJSONFile = (file, data) => {
     return new Promise((success, fail) => {
-        fs.writeFile(f, JSON.stringify(data), err => {
+        fs.writeFile(file, JSON.stringify(data), err => {
             if (err) {
                 return fail(err);
             }
@@ -11,9 +11,9 @@ const writeJSONFile = (f, data) => {
     });
 };
 
-const readJSONFile = (f) => {
+const readJSONFile = (file) => {
     return new Promise((success, fail) => {
-        fs.readFile(f, 'utf8', (err, data) => {
+        fs.readFile(file, 'utf8', (err, data) => {
             if (err) {
                 return fail(err);
             }

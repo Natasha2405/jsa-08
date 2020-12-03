@@ -8,5 +8,10 @@
         "id": 2,
         "first_name": "Jana",
         "last_name": "Janevska"
+    },
+    {
+        "id": 3,
+        "first_name": "Riste",
+        "last_name": "Mitrevski"
     }
 ]
