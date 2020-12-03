@@ -79,4 +79,4 @@ module.exports = {
     update,
     updatePartial,
     remove
-}
+};
