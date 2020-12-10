@@ -20,8 +20,8 @@ const getAll = async () => {
 
 const getOne = async (id) => {
     try {
-        let data = await User.findOne({_id: id});
-        return data
+        let data = await User.findOne({ _id: id });
+        return data;
     } catch (err) {
         console.log(err);
     }
@@ -38,8 +38,8 @@ const save = async (userData) => {
 };
 
 const update = async (id, userData) => {
-    try{
-        let data = await User.updateOne({_id: id}, userData);
+    try {
+        let data = await User.updateOne({ _id: id }, userData);
         return data.nModified !== 0;
     } catch (err) {
         console.log(err);
@@ -47,8 +47,8 @@ const update = async (id, userData) => {
 };
 
 const updatePartial = async (id, userData) => {
-    try{
-        let data = await User.updateOne({_id: id}, userData);
+    try {
+        let data = await User.updateOne({ _id: id }, userData);
         return data.nModified !== 0;
     } catch (err) {
         console.log(err);
@@ -56,8 +56,8 @@ const updatePartial = async (id, userData) => {
 };
 
 const remove = async (id) => {
-    try{
-        let data = await User.deleteOne({_id: id});
+    try {
+        let data = await User.deleteOne({ _id: id });
         return data.deletedCount !== 0;
     } catch (err) {
         console.log(err);
