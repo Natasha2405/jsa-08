@@ -15,7 +15,11 @@ const getOne = async (id) => {
 
 const save = async (userData) => {
     let data = await jsonf.readJSONFile(dataFile);
-    let id = data[data.length - 1].id + 1;
+    // let id = data[data.length - 1].id + 1;
+    let id = 1;
+    if (data.length > 0) {
+        id = data[data.length - 1].id + 1;
+    }
     userData = { id, ...userData };
     data = [...data, userData];
     await jsonf.writeJSONFile(dataFile, data);
