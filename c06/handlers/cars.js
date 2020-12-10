@@ -1,4 +1,4 @@
-const carsModel = require('../pkg/cars');
+const carsModel = require('../pkg/cars/mongo');
 
 const getAll = async (req, res) => {
     try {

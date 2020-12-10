@@ -1,4 +1,4 @@
-const booksModel = require('../pkg/books');
+const booksModel = require('../pkg/books/mongo');
 
 const getAll = async (req, res) => {
     try {
