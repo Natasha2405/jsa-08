@@ -1,4 +1,5 @@
 const booksModel = require('../pkg/books/mongo');
+const booksValidator = require('../pkg/books/validator');
 
 const getAll = async (req, res) => {
     try {
@@ -24,6 +25,12 @@ const getOne = async (req, res) => {
 };
 
 const save = async (req, res) => {
+    try {
+        await booksValidator.validate(req.body, booksValidator.bookSchema);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Bad Content');
+    }
     try {
         let book = await booksModel.save(req.body);
         return res.status(201).send(book);

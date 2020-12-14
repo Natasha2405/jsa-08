@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+const cfg = require('../config');
 
-let username = 'Natasha';
-let password = 'userpass555';
-let dbname = 'students';
+let username = cfg.get('db').username;
+let password = cfg.get('db').password;
+let dbname = cfg.get('db').dbname;
+let host = cfg.get('db').host;
 
-let dsn = `mongodb+srv://${username}:${password}@firstcluster.fqdoi.mongodb.net/${dbname}?retryWrites=true&w=majority`
+let dsn = `mongodb+srv://${username}:${password}@${host}/${dbname}?retryWrites=true&w=majority`
 
 mongoose.connect(
     // "mongodb+srv://Natasha:userpass555@firstcluster.fqdoi.mongodb.net/students?retryWrites=true&w=majority",

@@ -1,4 +1,5 @@
 const usersModel = require('../pkg/users/mongo');
+const usersValidator = require('../pkg/users/validator');
 
 const getAll = async (req, res) => {
     try {
@@ -24,6 +25,12 @@ const getOne = async (req, res) => {
 };
 
 const save = async (req, res) => {
+    try {
+        await usersValidator.validate(req.body, usersValidator.userSchema);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Bad Content');
+    }
     try {
         let u = await usersModel.save(req.body);
         return res.status(201).send(u);

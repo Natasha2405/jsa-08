@@ -1,4 +1,5 @@
 const carsModel = require('../pkg/cars/mongo');
+const carsValidator = require('../pkg/cars/validator');
 
 const getAll = async (req, res) => {
     try {
@@ -24,6 +25,12 @@ const getOne = async (req, res) => {
 };
 
 const save = async (req, res) => {
+    try {
+        await carsValidator.validate(req.body, carsValidator.carSchema);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Bad Content');
+    }
     try {
         let car = await carsModel.save(req.body);
         return res.status(201).send(car);
