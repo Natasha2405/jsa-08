@@ -42,6 +42,12 @@ const save = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        await carsValidator.validate(req.body, carsValidator.carSchema);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Bad Content');
+    }
+    try {
         let updateCar = await carsModel.update(req.params.id, req.body);
         if (updateCar) {
             return res.status(204).send('No Content');
@@ -54,6 +60,12 @@ const update = async (req, res) => {
 };
 
 const updatePartial = async (req, res) => {
+    try {
+        await carsValidator.validate(req.body, carsValidator.carSchema);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Bad Content');
+    }
     try {
         let updateCar = await carsModel.updatePartial(req.params.id, req.body);
         if (updateCar) {

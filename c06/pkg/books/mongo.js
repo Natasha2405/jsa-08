@@ -4,7 +4,10 @@ const Book = mongoose.model(
     'books',
     {
         title: String,
-        author: String
+        author: String,
+        year: Number,
+        genre: String,
+        price: Number
     },
     'books'
 );
@@ -36,7 +39,7 @@ const updatePartial = async (id, bookData) => {
 };
 
 const remove = async (id) => {
-        let data = await User.deleteOne({ _id: id });
+        let data = await Book.deleteOne({ _id: id });
         return data.deleteCount !== 0;
 };
 

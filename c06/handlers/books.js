@@ -42,6 +42,12 @@ const save = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        await booksValidator.validate(req.body, booksValidator.bookSchema);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Bad Content');
+    }
+    try {
         let updateBook = await booksModel.update(req.params.id, req.body);
         if (updateBook) {
             return res.status(204).send('No Content');
@@ -54,6 +60,12 @@ const update = async (req, res) => {
 };
 
 const updatePartial = async (req, res) => {
+    try {
+        await booksValidator.validate(req.body, booksValidator.bookSchema);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Bad Content');
+    }
     try {
         let updateBook = await booksModel.updatePartial(req.params.id, req.body);
         if (updateBook) {

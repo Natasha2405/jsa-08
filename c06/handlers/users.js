@@ -42,6 +42,12 @@ const save = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        await usersValidator.validate(req.body, usersValidator.userSchema);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Bad Content');
+    }
+    try {
         let c = await usersModel.update(req.params.id, req.body);
         if (c) {
             return res.status(204).send('No Content');
@@ -54,6 +60,12 @@ const update = async (req, res) => {
 };
 
 const updatePartial = async (req, res) => {
+    try {
+        await usersValidator.validate(req.body, usersValidator.userSchema);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Bad Content');
+    }
     try {
         let c = await usersModel.updatePartial(req.params.id, req.body);
         if (c) {

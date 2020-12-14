@@ -1,8 +1,11 @@
 const { Validator } = require('node-input-validator');
 
 const bookSchema = {
-    title: 'required|minLength:3',
-    author: 'required|minLength:4'
+    title: 'required|string',
+    author: 'required|string',
+    year: 'required|integer',
+    genre: 'required|string',
+    price: 'required|min:7'
 };
 
 const validate = async (data, schema) => {
