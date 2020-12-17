@@ -5,7 +5,7 @@ const userSchema = {
     last_name: 'required|minLength:4',
     age: 'required|between:18,100',
     email: 'required|email',
-    dob: 'required|dateFormat:DD/MM/YYYY',
+    dob: 'required',
     city: 'required|string'
 };
 

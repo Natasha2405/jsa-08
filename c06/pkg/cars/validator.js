@@ -4,7 +4,7 @@ const carSchema = {
     name: 'required|string',
     model: 'required|minLength:2',
     color: 'required|string',
-    year: 'required|min:2010'
+    year: 'required|between:2010,2030'
 };
 
 const validate = async (data, schema) => {
