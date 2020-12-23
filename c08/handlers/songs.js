@@ -1,9 +1,9 @@
-const moviesModel = require('../pkg/movies');
-const moviesValidator = require('../pkg/movies/validator');
+const songsModel = require('../pkg/songs');
+const songsValidator = require('../pkg/songs/validator');
 
 const save = async (req, res) => {
     try {
-        await moviesValidator.validate(req.body, moviesValidator.movieSchema);
+        await songsValidator.validate(req.body, songsValidator.songSchema);
     } catch (err) {
         console.log(err);
         return res.status(400).send('Bad Content');
@@ -15,8 +15,8 @@ const save = async (req, res) => {
             _created: new Date().toISOString(),
             _deleted: false
         }
-        let movie = await moviesModel.save(data);
-        return res.status(201).send(movie);
+        let song = await songsModel.save(data);
+        return res.status(201).send(song);
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error')
@@ -25,7 +25,7 @@ const save = async (req, res) => {
 
 const getAll = async (req, res) => {
     try {
-        let data = await moviesModel.getAll(req.user.uid);
+        let data = await songsModel.getAll(req.user.uid);
         return res.status(200).send(data);
     } catch (err) {
         console.log(err);
@@ -35,7 +35,7 @@ const getAll = async (req, res) => {
 
 const getOne = async (req, res) => {
     try {
-        let data = await moviesModel.getOne(req.params.id);
+        let data = await songsModel.getOne(req.params.id);
         if (data) {
             return res.status(200).send(data);
         }
@@ -49,14 +49,14 @@ const getOne = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        await moviesValidator.validate(req.body, moviesValidator.movieSchema);
+        await songsValidator.validate(req.body, songsValidator.songSchema);
     } catch (err) {
         console.log(err);
         return res.status(400).send('Bad Content');
     }
     try {
-        let updateMovie = await moviesModel.update(req.params.id, req.user.uid, req.body);
-        if (updateMovie) {
+        let updateSong = await songsModel.update(req.params.id, req.user.uid, req.body);
+        if (updateSong) {
             return res.status(204).send('No Content');
         }
         return res.status(404).send('Not Found');
@@ -68,14 +68,14 @@ const update = async (req, res) => {
 
 const updatePartial = async (req, res) => {
     try {
-        await moviesValidator.validate(req.body, moviesValidator.movieSchema);
+        await songsValidator.validate(req.body, songsValidator.songSchema);
     } catch (err) {
         console.log(err);
         return res.status(400).send('Bad Content');
     }
     try {
-        let updateMovie = await moviesModel.updatePartial(req.params.id, req.user.uid, req.body);
-        if (updateMovie) {
+        let updateSong = await songsModel.updatePartial(req.params.id, req.user.uid, req.body);
+        if (updateSong) {
             return res.status(204).send('No Content');
         }
         return res.status(404).send('Not Found');
@@ -87,8 +87,8 @@ const updatePartial = async (req, res) => {
 
 const remove = async (req, res) => {
     try {
-        let deleteMovie = await moviesModel.remove(req.params.id, req.user.uid);
-        if (deleteMovie) {
+        let deleteSong = await songsModel.remove(req.params.id, req.user.uid);
+        if (deleteSong) {
             return res.status(204).send('No Content');
         }
         return res.status(404).send('Not Found');

@@ -1,9 +1,9 @@
-const moviesModel = require('../pkg/movies');
-const moviesValidator = require('../pkg/movies/validator');
+const gamesModel = require('../pkg/games');
+const gamesValidator = require('../pkg/games/validator');
 
 const save = async (req, res) => {
     try {
-        await moviesValidator.validate(req.body, moviesValidator.movieSchema);
+        await gamesValidator.validate(req.body, gamesValidator.gameSchema);
     } catch (err) {
         console.log(err);
         return res.status(400).send('Bad Content');
@@ -15,8 +15,8 @@ const save = async (req, res) => {
             _created: new Date().toISOString(),
             _deleted: false
         }
-        let movie = await moviesModel.save(data);
-        return res.status(201).send(movie);
+        let game = await gamesModel.save(data);
+        return res.status(201).send(game);
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error')
@@ -25,38 +25,36 @@ const save = async (req, res) => {
 
 const getAll = async (req, res) => {
     try {
-        let data = await moviesModel.getAll(req.user.uid);
+        let data = await gamesModel.getAll(req.user.uid);
         return res.status(200).send(data);
     } catch (err) {
         console.log(err);
-        return res.status(500).send('Internal Server Error')
-    } 
+        return res.status(500).send('Internal Server Error');
+    }
 };
 
 const getOne = async (req, res) => {
     try {
-        let data = await moviesModel.getOne(req.params.id);
+        let data = await gamesModel.getAll(req.params.id);
         if (data) {
             return res.status(200).send(data);
         }
-        return res.status(404).send('Not Found');
     } catch (err) {
         console.log(err);
-        return res.status(500).send('Internal Server Error')
-    } 
-
+        return res.status(500).send('Internal Server Error');
+    }
 };
 
 const update = async (req, res) => {
     try {
-        await moviesValidator.validate(req.body, moviesValidator.movieSchema);
+        await gamesValidator.validate(req.body, gamesValidator.gameSchema);
     } catch (err) {
         console.log(err);
         return res.status(400).send('Bad Content');
     }
     try {
-        let updateMovie = await moviesModel.update(req.params.id, req.user.uid, req.body);
-        if (updateMovie) {
+        let updateGame = await gamesModel.update(req.params.id, req.user.uid, req.body);
+        if (updateGame) {
             return res.status(204).send('No Content');
         }
         return res.status(404).send('Not Found');
@@ -68,14 +66,14 @@ const update = async (req, res) => {
 
 const updatePartial = async (req, res) => {
     try {
-        await moviesValidator.validate(req.body, moviesValidator.movieSchema);
+        await gamesValidator.validate(req.body, gamesValidator.gameSchema);
     } catch (err) {
         console.log(err);
         return res.status(400).send('Bad Content');
     }
     try {
-        let updateMovie = await moviesModel.updatePartial(req.params.id, req.user.uid, req.body);
-        if (updateMovie) {
+        let updateGame = await gamesModel.updatePartial(req.params.id, req.user.uid, req.body);
+        if (updateGame) {
             return res.status(204).send('No Content');
         }
         return res.status(404).send('Not Found');
@@ -87,8 +85,8 @@ const updatePartial = async (req, res) => {
 
 const remove = async (req, res) => {
     try {
-        let deleteMovie = await moviesModel.remove(req.params.id, req.user.uid);
-        if (deleteMovie) {
+        let deleteGame = await gamesModel.remove(req.params.id, req.user.uid);
+        if (deleteGame) {
             return res.status(204).send('No Content');
         }
         return res.status(404).send('Not Found');

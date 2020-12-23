@@ -74,10 +74,18 @@ const login = async (req, res) => {
 };
 
 const refreshToken = async (req, res) => {
-
     console.log(req.user); // pristapuvame do podatocite od tokenot;
-
-    res.status(200).send('ok');
+    let payload = {
+        uid: req.user.uid,
+        role: req.user.role,
+        email: req.user.email,
+        first_name: req.user.first_name,
+        last_name: req.user.last_name,
+        exp: (new Date().getTime() + (365 * 24 * 60 * 60 * 1000)) / 1000
+    };
+    let key = cfg.get('server').jwt_key;
+    let token = jwt.sign(payload, key);
+    return res.status(200).send({ jwt: token });
 };
 
 const forgotPassword = async (req, res) => {
