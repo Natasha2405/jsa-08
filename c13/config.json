@@ -1,0 +1,23 @@
+{
+    "server": {
+        "port": 9001,
+        "jwt_key": "Tajn4"
+    },
+    "db": {
+        "username": "Natasha",
+        "password": "userpass555",
+        "host": "firstcluster.fqdoi.mongodb.net",
+        "dbname": "students"
+    },
+    "weather": {
+        "api_key": "key..."
+    },
+    "mailer": {
+        "key": "1addd7accd5e271acf60c75e82cbf6d6-28d78af2-73f24c65",
+        "domain": "sandbox7521fbad172a4ec3aa38ad7aa986b56e.mailgun.org"
+    },
+    "email": {
+        "api_key": "key",
+        "secret": "test..."
+    }
+}
