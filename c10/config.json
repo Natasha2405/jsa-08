@@ -1,0 +1,19 @@
+{
+    "server": {
+        "port": 9001,
+        "jwt_key": "Tajn4"
+    },
+    "db": {
+        "username": "Natasha",
+        "password": "userpass555",
+        "host": "firstcluster.fqdoi.mongodb.net",
+        "dbname": "students"
+    },
+    "weather": {
+        "api_key": "key..."
+    },
+    "email": {
+        "api_key": "key",
+        "secret": "test..."
+    }
+}
