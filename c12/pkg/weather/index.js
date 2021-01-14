@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const API_KEY = '347fdad8ce7df45ca6596d03e148c4f0';
+const API_KEY = '';
 const UNITS = 'metric';
 const API_ENDPOINT = 'http://api.openweathermap.org/data/2.5/weather';
 
