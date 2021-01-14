@@ -3,10 +3,10 @@
         "port": 9000
     },
     "db": {
-        "username": "Natasha",
-        "password": "userpass555",
-        "host": "firstcluster.fqdoi.mongodb.net",
-        "dbname": "students"
+        "username": "",
+        "password": "",
+        "host": "",
+        "dbname": ""
     },
     "weather": {
         "api_key": "key..."
