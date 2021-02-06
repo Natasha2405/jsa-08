@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const API_KEY = 'b57f87e42e8b4310bbf222358210201';
+const API_KEY = '';
 const API_ENDPOINT = 'http://api.weatherapi.com/v1/forecast.json';
 const days = 10;
 // http://api.weatherapi.com/v1/forecast.json?key=b57f87e42e8b4310bbf222358210201&q=Skopje&days=10
