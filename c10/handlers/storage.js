@@ -35,6 +35,7 @@ const storeFile = async (req, res) => {
     
     // let userDir = `${__dirname}/../uploads/${req.user.uid}`;
     let userDir = `${__dirname}/../uploads/${dir}`;
+    console.log(userDir);
     if (!fs.existsSync(userDir)) {
         fs.mkdirSync(userDir);
     }

@@ -50,10 +50,9 @@ const updatePartial = async (id, userData) => {
     return data.nModified !== 0;
 };
 
-// const updateOneByEmail = async (email, userData) => {
-//     let data = await User.updateOne({ email }, userData);
-//     return data.nModified !== 0;
-// };
+const updateByResetHash = (hash, userData) => {
+    return User.updateOne({ reset_hash: hash }, userData);
+};
 
 const remove = async (id) => {
     let data = await User.updateOne({ _id: id }, {_deleted: true});
@@ -68,5 +67,6 @@ module.exports = {
     save,
     update,
     updatePartial,
+    updateByResetHash,
     remove
 };

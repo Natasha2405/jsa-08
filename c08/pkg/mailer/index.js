@@ -1,6 +1,6 @@
+const fs = require('fs');
 const mailgun = require('mailgun.js');
 const conf = require('../config');
-const fs = require('fs');
 
 const send = (to, type, data) => {
     let mg = mailgun.client({
@@ -34,10 +34,6 @@ const mailContent = (type, data) => {
         'RESET_PASSWORD': {
             subject: 'My App Password Reset',
             text: 'Welcome to My App. Please open this email in a better client'
-        },
-        'NOTIFICATION': {
-            subject: 'My App Notification',
-            text: 'Welcome to My App. Please open this email in a better client'
         }
     };
 
@@ -46,10 +42,7 @@ const mailContent = (type, data) => {
 
     for (let i in data) {
         let re = new RegExp(`\{${i}\}`, 'g');
-        console.log(re);        //  /{name}/g   /{link}/g
         tpl = tpl.replace(re, data[i]);
-        console.log(data[i]);  // Natasha Gajikj  // http://google.com
-        console.log(tpl);     // html mailot
     }
 
     return {
@@ -62,13 +55,3 @@ const mailContent = (type, data) => {
 module.exports = {
     send
 };
-
-// mailer.send(['natasa.gajik@gmail.com'], 'WELCOME', {name: 'Natasha Gajikj'});
-
-// mailer.send(
-//     ['natasa.gajik@gmail.com'],
-//     'RESET_PASSWORD',
-// {
-//     name: 'Natasha Gajikj',
-//     link: 'http://google.com'
-// });

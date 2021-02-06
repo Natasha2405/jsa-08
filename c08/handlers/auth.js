@@ -3,6 +3,8 @@ const usersValidator = require('../pkg/users/validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cfg = require('../pkg/config');
+const mailer = require('../pkg/mailer');
+const strings = require('../pkg/strings');
 
 const create = async (req, res) => {
     // validate user data
@@ -32,6 +34,15 @@ const create = async (req, res) => {
     // save user
     try {
         let u = await usersModel.save(req.body);
+
+        // send welcome email
+        let welcomeMail = await mailer.send(
+            [req.body.email],
+            'WELCOME',
+            { name: req.body.first_name }
+        );
+        console.log(welcomeMail);
+
         res.status(201).send(u);
     } catch (err) {
         console.log(err);
@@ -89,11 +100,49 @@ const refreshToken = async (req, res) => {
 };
 
 const forgotPassword = async (req, res) => {
-    res.status(200).send('ok');
+    try {
+        let ru = await usersModel.getOneByEmail(req.body.email);
+        if (!ru) {
+            return res.status(404).send('Not Found');
+        }
+
+        let hash_link = strings.randomString(40);
+        await usersModel.update(ru._id, { reset_hash: hash_link });
+        await mailer.send(
+            [req.body.email],
+            'RESET_PASSWORD',
+            {
+                name: ru.first_name,
+                link: hash_link
+            }
+        );
+        return res.status(204).send('No Content');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Error');
+    }
 };
 
 const resetPassword = async (req, res) => {
-    res.status(200).send('ok');
+    try {
+        await usersValidator.validate(req.body, usersValidator.resetPasswordSchema);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Bad Request');
+    }
+
+    try {
+        if (req.body.new_password === req.body.confirm_password) {
+            let reset_password = bcrypt.hashSync(req.body.new_password);
+            await usersModel.updateByResetHash(req.body.reset_hash, {password: reset_password});
+        } else {
+            return res.status(400).send('Passwords do not match');
+        }
+        return res.status(204).send('Password is successfully reseted');
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send('Internal Server Error');
+    }
 };
 
 // homework 

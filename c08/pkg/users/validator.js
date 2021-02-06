@@ -20,6 +20,12 @@ const changePasswordSchema = {
     confirm_password: 'required'
 };
 
+const resetPasswordSchema = {
+    new_password: 'required',
+    confirm_password: 'required',
+    reset_hash: 'required|minLength:40'
+};
+
 const validate = async (data, schema) => {
     let v = new Validator(data, schema);
     // return await v.check();
@@ -33,5 +39,6 @@ module.exports = {
     registrationSchema,
     loginSchema,
     changePasswordSchema,
+    resetPasswordSchema,
     validate
 };
